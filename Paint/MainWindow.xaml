@@ -1,0 +1,300 @@
+﻿<Fluent:RibbonWindow x:Class="Paint.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Paint"
+        xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+        mc:Ignorable="d"
+        Title="Paint" Height="750" Width="1250" Loaded="RibbonWindow_Loaded">
+    <StackPanel>
+        <!--RibbonUI-->
+        <Fluent:Ribbon>
+            <!--Backstage-->
+            <Fluent:Ribbon.Menu>
+                <Fluent:ApplicationMenu Header="File">
+                    <Fluent:MenuItem Header="New" Name="newButton" Click="newButton_Click"
+                                     RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <Fluent:MenuItem Header="Open" Name="openButton" Click="openButton_Click"
+                                     RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <Fluent:MenuItem Header="Save" Name="saveBtn" Click="saveBtn_Click"
+                                     RenderOptions.BitmapScalingMode="HighQuality"/>
+
+                    <Fluent:MenuItem Header="Import to canvas" Name="importButton" Click="importButton_Click"
+                                     RenderOptions.BitmapScalingMode="HighQuality"/>
+                </Fluent:ApplicationMenu>
+            </Fluent:Ribbon.Menu>
+
+            <Fluent:RibbonTabItem Header="Home">
+                <Fluent:RibbonGroupBox Header="Tools" >
+                    <Fluent:Button Name="undoBtn" Header="Undo" Margin="4,0,4,0">
+                        <Fluent:Button.LargeIcon>
+                            <Image Source="/Images/undo.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </Fluent:Button.LargeIcon>
+                    </Fluent:Button>
+                    <Fluent:Button Name="redoBtn" Header="Redo" Margin="4,0,4,0">
+                        <Fluent:Button.LargeIcon>
+                            <Image Source="/Images/redo.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </Fluent:Button.LargeIcon>
+                    </Fluent:Button>
+                </Fluent:RibbonGroupBox>
+
+                <Fluent:RibbonGroupBox Header="Brushes">
+                    <StackPanel Orientation="Vertical" Margin="4,0,4,0" HorizontalAlignment="Center">
+                        <Image Source="Images/brushes.png" RenderOptions.BitmapScalingMode="HighQuality" 
+                           Width="35" Margin="5"/>
+
+
+                        <Fluent:ComboBox x:Name="brushesComboBox" Height="20" IsEditable="False" HorizontalAlignment="Center"
+                                         SelectionChanged="brushesComboBox_SelectionChanged">
+                            <ComboBoxItem IsSelected="True">
+                                <TextBlock Text="-------" FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <TextBlock Text="- - - -" FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <TextBlock Text="-.-.-.-" FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <TextBlock Text=". . . ." FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </ComboBoxItem>
+                        </Fluent:ComboBox>
+                    </StackPanel>
+                </Fluent:RibbonGroupBox>
+
+                <Fluent:RibbonGroupBox Header="Shapes" Width="270">
+                    <!--Add Shape Icon-->
+                    <!--
+                    <ListView x:Name="iconShapeListView" Width="200" Height="60" Margin="10,10,10, 0"
+                              SelectionChanged="iconShapeListView_SelectionChanged"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>-->
+        
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Name="prototypesStackPanel" Width="262" Margin="0,0,0,-70"/>
+                </Fluent:RibbonGroupBox>
+
+                <Fluent:RibbonGroupBox Header="Size">
+                    <StackPanel Orientation="Vertical" Margin="4,4,4,0" HorizontalAlignment="Center">
+                        <Image Source="Images/line_weight.png" RenderOptions.BitmapScalingMode="HighQuality" 
+                           Width="40" Margin="2"/>
+
+                        <Fluent:ComboBox x:Name="sizeComboBox" Height="15" IsEditable="False" HorizontalAlignment="Center"
+                                         SelectionChanged="sizeComboBox_SelectionChanged" Margin="0,8,0,0">
+                            <ComboBoxItem IsSelected="True" Content="1 pixel"/>
+                            <ComboBoxItem Content="3 pixel"/>
+                            <ComboBoxItem Content="5 pixel"/>
+                            <ComboBoxItem Content="8 pixel"/>
+                        </Fluent:ComboBox>
+                    </StackPanel>
+                </Fluent:RibbonGroupBox>
+
+                <!--Colors selection-->
+                <Fluent:RibbonGroupBox Header="Colors" Width="300">
+                    <StackPanel Orientation="Horizontal">
+                        <Grid Width="200" Margin="20,0,5,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+
+                            <!--Define Color button-->
+                            <Border Grid.Column="0" Grid.Row="0" BorderThickness="1" BorderBrush="Black" Width="28" Height="28" CornerRadius="25"/>
+                            <Button x:Name="blackBasicBtn" Grid.Column="0" Grid.Row="0" Width="25" Height="25" Click="blackBasicBtn_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Grid>
+                                            <Ellipse Fill="Black"/>
+                                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                            <Border Grid.Column="1" Grid.Row="0" BorderThickness="1" BorderBrush="Black" Width="28" Height="28" CornerRadius="25"/>
+                            <Button x:Name="grayBasicBtn" Grid.Column="1" Grid.Row="0" Width="25" Height="25" Click="grayBasicBtn_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Grid>
+                                            <Ellipse Fill="Gray"/>
+                                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                            <Border Grid.Column="2" Grid.Row="0" BorderThickness="1" BorderBrush="Black" Width="28" Height="28" CornerRadius="25"/>
+                            <Button x:Name="darkRedBtn" Grid.Column="2" Grid.Row="0" Width="25" Height="25" Click="darkRedBtn_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Grid>
+                                            <Ellipse Fill="#880015"/>
+                                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                            <Border Grid.Column="3" Grid.Row="0" BorderThickness="1" BorderBrush="Black" Width="28" Height="28" CornerRadius="25"/>
+                            <Button x:Name="redBtn" Grid.Column="3" Grid.Row="0" Width="25" Height="25" Click="redBtn_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Grid>
+                                            <Ellipse Fill="#ED1C24"/>
+                                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                            <Border Grid.Column="4" Grid.Row="0" BorderThickness="1" BorderBrush="Black" Width="28" Height="28" CornerRadius="25"/>
+                            <Button x:Name="orangeBtn" Grid.Column="4" Grid.Row="0" Width="25" Height="25" Click="orangeBtn_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Grid>
+                                            <Ellipse Fill="#FF7F27"/>
+                                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                            <Border Grid.Column="5" Grid.Row="0" BorderThickness="1" BorderBrush="Black" Width="28" Height="28" CornerRadius="25"/>
+                            <Button x:Name="yellowBtn" Grid.Column="5" Grid.Row="0" Width="25" Height="25" Click="redBtn_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Grid>
+                                            <Ellipse Fill="#FFF200"/>
+                                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+
+                            <Border Grid.Column="0" Grid.Row="1" BorderThickness="1" BorderBrush="Black" Width="28" Height="28" CornerRadius="25"/>
+                            <Button x:Name="whiteBtn" Grid.Column="0" Grid.Row="1" Width="25" Height="25" Click="whiteBtn_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Grid>
+                                            <Ellipse Fill="#FFFFFF"/>
+                                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                            <Border Grid.Column="1" Grid.Row="1" BorderThickness="1" BorderBrush="Black" Width="28" Height="28" CornerRadius="25"/>
+                            <Button x:Name="greenBtn" Grid.Column="1" Grid.Row="1" Width="25" Height="25" Click="greenBtn_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Grid>
+                                            <Ellipse Fill="#22B14C"/>
+                                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+
+                            <Border Grid.Column="2" Grid.Row="1" BorderThickness="1" BorderBrush="Black" Width="28" Height="28" CornerRadius="25"/>
+                            <Button x:Name="blueBtn" Grid.Column="2" Grid.Row="1" Width="25" Height="25" Click="blueBtn_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Grid>
+                                            <Ellipse Fill="#00A2E8"/>
+                                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                            <Border Grid.Column="3" Grid.Row="1" BorderThickness="1" BorderBrush="Black" Width="28" Height="28" CornerRadius="25"/>
+                            <Button x:Name="darkBlueBtn" Grid.Column="3" Grid.Row="1" Width="25" Height="25" Click="darkBlueBtn_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Grid>
+                                            <Ellipse Fill="#3F48CC"/>
+                                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                            <Border Grid.Column="4" Grid.Row="1" BorderThickness="1" BorderBrush="Black" Width="28" Height="28" CornerRadius="25"/>
+                            <Button x:Name="purpleBtn" Grid.Column="4" Grid.Row="1" Width="25" Height="25" Click="purpleBtn_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Grid>
+                                            <Ellipse Fill="#A349A4"/>
+                                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+
+                            <Border Grid.Column="5" Grid.Row="1" BorderThickness="1" BorderBrush="Black" Width="28" Height="28" CornerRadius="25"/>
+                            <Button x:Name="lavenderBtn" Grid.Column="5" Grid.Row="5" Width="25" Height="25" Click="lavenderBtn_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Grid>
+                                            <Ellipse Fill="#C8BFE7"/>
+                                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+
+
+                        </Grid>
+
+                        <Fluent:Button x:Name="editColorBtn" Header="Edit Color" Click="editColorBtn_Click" Padding="4,4,4,0">
+                            <Fluent:Button.LargeIcon>
+                                <Image Source="Images/color_wheel.png" RenderOptions.BitmapScalingMode="HighQuality">
+                                </Image>
+                            </Fluent:Button.LargeIcon>
+                        </Fluent:Button>
+                    </StackPanel>
+
+
+                </Fluent:RibbonGroupBox>
+
+            </Fluent:RibbonTabItem>
+
+        </Fluent:Ribbon>
+
+        <!--Draw area-->
+        <Grid>
+            <Canvas x:Name="canvas" Background="White"
+                    MouseDown="canvas_MouseDown"
+                    MouseMove="canvas_MouseMove" 
+                    MouseUp="canvas_MouseUp"
+                    Height="600" Width="1250">
+            </Canvas>
+
+            <Border Background="Transparent"
+                    MouseDown="canvas_MouseDown"
+                    MouseMove="canvas_MouseMove"
+                    MouseUp="canvas_MouseUp">
+            </Border>
+        </Grid>
+
+
+    </StackPanel>
+</Fluent:RibbonWindow>
