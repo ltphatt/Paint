@@ -27,6 +27,12 @@
 
             <Fluent:RibbonTabItem Header="Home">
                 <Fluent:RibbonGroupBox Header="Tools" >
+                    <Fluent:Button x:Name="modeBtn" Header="Draw Mode" Margin="4,0,4,0">
+                        <Fluent:Button.LargeIcon>
+                            <Image Source="/Images/draw_mode.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </Fluent:Button.LargeIcon>
+                    </Fluent:Button>
+                    
                     <Fluent:Button Name="undoBtn" Header="Undo" Margin="4,0,4,0">
                         <Fluent:Button.LargeIcon>
                             <Image Source="/Images/undo.png" RenderOptions.BitmapScalingMode="HighQuality"/>
@@ -60,7 +66,7 @@
 
                 <Fluent:RibbonGroupBox Header="Brushes">
                     <StackPanel Orientation="Vertical" Margin="4,0,4,0" HorizontalAlignment="Center">
-                        <Image Source="Images/brushes.png" RenderOptions.BitmapScalingMode="HighQuality" 
+                        <Image Source="Images/brush.png" RenderOptions.BitmapScalingMode="HighQuality" 
                            Width="35" Margin="5"/>
 
                         <Fluent:ComboBox x:Name="brushesComboBox" Height="15" Width="50" IsEditable="False"
@@ -81,21 +87,29 @@
                     </StackPanel>
                 </Fluent:RibbonGroupBox>
 
-                <Fluent:RibbonGroupBox Header="Shapes" Width="270">
-                    <!--Add Shape Icon-->
-                    <!--
-                    <ListView x:Name="iconShapeListView" Width="200" Height="60" Margin="10,10,10, 0"
-                              SelectionChanged="iconShapeListView_SelectionChanged"
+                <!--Shapes-->
+                <Fluent:RibbonGroupBox Header="Shapes">
+                    <!--Add shapes' icon-->
+                    <ListView Name="iconListView" Width="200" Height="60" Margin="8,8,8,0" SelectionChanged="iconListView_SelectionChanged"
                               ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Icon}" Width="25" Height="25" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
 
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel/>
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
-                    </ListView>-->
-        
-                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Name="prototypesStackPanel" Width="262" Margin="0,0,0,-70"/>
+
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="ToolTip" Value="{Binding Name}"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
                 </Fluent:RibbonGroupBox>
 
                 <Fluent:RibbonGroupBox Header="Size">
@@ -201,7 +215,7 @@
                             </Button>
 
                             <Border Grid.Column="5" Grid.Row="0" BorderThickness="1" BorderBrush="Black" Width="28" Height="28" CornerRadius="25"/>
-                            <Button x:Name="yellowBtn" Grid.Column="5" Grid.Row="0" Width="25" Height="25" Click="redBtn_Click">
+                            <Button x:Name="yellowBtn" Grid.Column="5" Grid.Row="0" Width="25" Height="25" Click="yellowBtn_Click">
                                 <Button.Template>
                                     <ControlTemplate TargetType="{x:Type Button}">
                                         <Grid>

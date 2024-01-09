@@ -10,12 +10,12 @@ namespace Line2D
         private Point2D _start = new Point2D();
         private Point2D _end = new Point2D();
         public string Name => "Line";
-        public string Icon => "Images/line.png";
+        public string Icon => "/Images/line.png";
         public IShape Clone()
         {
             return new Line2D();
         }
-        public UIElement Draw(int thickness)
+        public UIElement Draw(SolidColorBrush brush, int thickness)
         {
             Line l = new Line()
             {
@@ -24,7 +24,7 @@ namespace Line2D
                 X2 = _end.X,
                 Y2 = _end.Y,
                 StrokeThickness = thickness,
-                Stroke = new SolidColorBrush(Colors.Red),
+                Stroke = brush,
             };
             return l;
         }

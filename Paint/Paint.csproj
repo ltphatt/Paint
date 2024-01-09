@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <None Remove="Images\add-folder.png" />
-    <None Remove="Images\brushes.png" />
+    <None Remove="Images\brush.png" />
     <None Remove="Images\circle.png" />
     <None Remove="Images\color_wheel.png" />
     <None Remove="Images\copy.png" />
@@ -19,6 +19,7 @@
     <None Remove="Images\draw_mode.png" />
     <None Remove="Images\ellipse.png" />
     <None Remove="Images\import.png" />
+    <None Remove="Images\line.png" />
     <None Remove="Images\open-folder.png" />
     <None Remove="Images\paste.png" />
     <None Remove="Images\rectangle.png" />
@@ -43,7 +44,7 @@
 
   <ItemGroup>
     <Resource Include="Images\add-folder.png" />
-    <Resource Include="Images\brushes.png" />
+    <Resource Include="Images\brush.png" />
     <Resource Include="Images\circle.png" />
     <Resource Include="Images\color_wheel.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -53,6 +54,7 @@
     <Resource Include="Images\draw_mode.png" />
     <Resource Include="Images\ellipse.png" />
     <Resource Include="Images\import.png" />
+    <Resource Include="Images\line.png" />
     <Resource Include="Images\open-folder.png" />
     <Resource Include="Images\paste.png" />
     <Resource Include="Images\rectangle.png" />

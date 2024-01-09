@@ -27,8 +27,10 @@ namespace Paint
         string _selectedShapeName = "";
 
 
-        private int currentThickness = 1;
-        private SolidColorBrush currentColor = new SolidColorBrush(Colors.Black);
+        private static int currentThickness = 1;
+        private static SolidColorBrush currentColor = new SolidColorBrush(Colors.Black);
+
+        private List<IShape> allShape = new List<IShape>();
 
         public MainWindow()
         {
@@ -56,12 +58,12 @@ namespace Paint
                 // Ve lai cac hinh truoc do
                 foreach(var shape in _shapes)
                 {
-                    UIElement element = shape.Draw(currentThickness);
+                    UIElement element = shape.Draw(currentColor, currentThickness);
                     canvas.Children.Add(element);
                 }
 
                 // Ve lai hinh preview
-                canvas.Children.Add(_preview.Draw(currentThickness));
+                canvas.Children.Add(_preview.Draw(currentColor, currentThickness));
             }
         }
 
@@ -83,7 +85,7 @@ namespace Paint
             // Vẽ lại tất cả
             foreach(var shape in _shapes)
             {
-                UIElement element = shape.Draw(currentThickness);
+                UIElement element = shape.Draw(currentColor, currentThickness);
                 canvas.Children.Add(element);
             }
         }
@@ -111,35 +113,38 @@ namespace Paint
                 }
             }
 
-            // Tao ra cac button prototypes
             foreach(var item in _prototypes)
             {
                 var shape = item.Value as IShape;
-
-                var button = new System.Windows.Controls.Button()
-                {
-                    Width = 80,
-                    Height = 35,
-                    Margin = new Thickness(5, 0, 5, 0),
-                    Tag = shape.Name,
-                    
-                    
-                    
-                };
-                button.Click += prototypeButton_Click;
-                prototypesStackPanel.Children.Add(button);
+                allShape.Add(shape);
             }
 
-            _selectedShapeName = _prototypes.First().Value.Name;
+            iconListView.ItemsSource = allShape;
+
+            if(this.allShape.Count == 0)
+            {
+                return;
+            }
+
+            _selectedShapeName = allShape[0].Name;
             _preview = _prototypes[_selectedShapeName].Clone();
         }
 
-        private void prototypeButton_Click(object sender, RoutedEventArgs e)
+        private void iconListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _selectedShapeName = (sender as System.Windows.Controls.Button).Tag as string;
-            _preview = _prototypes[_selectedShapeName];
-        }
+            //_selectedShapeName = (sender as System.Windows.Controls.Button).Tag as string;
+            //_preview = _prototypes[_selectedShapeName];
 
+            if(allShape.Count == 0)
+            {
+                return;
+            }
+
+            var idx = iconListView.SelectedIndex;
+            _selectedShapeName = allShape[idx].Name;
+            _preview = _prototypes[_selectedShapeName].Clone();
+
+        }
 
         private void newButton_Click(object sender, RoutedEventArgs e)
         {
@@ -165,6 +170,8 @@ namespace Paint
         {
 
         }
+
+
 
         private void sizeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -210,70 +217,70 @@ namespace Paint
         {
             currentColor = new SolidColorBrush(Color.FromRgb(127, 127, 127));
             iconBorder.Background = currentColor;
-
         }
 
         private void darkRedBtn_Click(object sender, RoutedEventArgs e)
         {
             currentColor = new SolidColorBrush(Color.FromRgb(136, 0, 21));
             iconBorder.Background = currentColor;
-
         }
 
         private void greenBtn_Click(object sender, RoutedEventArgs e)
         {
             currentColor = new SolidColorBrush(Color.FromRgb(34, 177, 76));
             iconBorder.Background = currentColor;
-
         }
 
         private void whiteBtn_Click(object sender, RoutedEventArgs e)
         {
             currentColor = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             iconBorder.Background = currentColor;
-
         }
 
         private void blueBtn_Click(object sender, RoutedEventArgs e)
         {
             currentColor = new SolidColorBrush(Color.FromRgb(0, 162, 232));
             iconBorder.Background = currentColor;
-
         }
 
         private void darkBlueBtn_Click(object sender, RoutedEventArgs e)
         {
             currentColor = new SolidColorBrush(Color.FromRgb(63, 72, 204));
             iconBorder.Background = currentColor;
-
         }
 
         private void purpleBtn_Click(object sender, RoutedEventArgs e)
         {
             currentColor = new SolidColorBrush(Color.FromRgb(163, 73, 164));
             iconBorder.Background = currentColor;
-
         }
 
         private void lavenderBtn_Click(object sender, RoutedEventArgs e)
         {
             currentColor = new SolidColorBrush(Color.FromRgb(200, 191, 231));
             iconBorder.Background = currentColor;
-
         }
 
         private void redBtn_Click(object sender, RoutedEventArgs e)
         {
             currentColor = new SolidColorBrush(Color.FromRgb(237, 28, 36));
             iconBorder.Background = currentColor;
-
         }
 
         private void orangeBtn_Click(object sender, RoutedEventArgs e)
         {
             currentColor = new SolidColorBrush(Color.FromRgb(255, 127, 39));
             iconBorder.Background = currentColor;
+        }
 
+        private void yellowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            currentColor = new SolidColorBrush(Color.FromRgb(255, 242, 0));
+            iconBorder.Background = currentColor;   
+        }
+
+        private void currentColorBtn_Click(object sender, RoutedEventArgs e)
+        {
         }
 
         private void brushesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -281,10 +288,7 @@ namespace Paint
 
         }
 
-        private void currentColorBtn_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -306,9 +310,7 @@ namespace Paint
 
         }
 
-        private void exportButton_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
+
     }
 }

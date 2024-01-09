@@ -9,6 +9,7 @@ using System.Windows;
 
 namespace Contract
 {
+
     public class Point2D : IShape
     {
         public double X { get; set; }
@@ -22,7 +23,7 @@ namespace Contract
             return new Point2D();
         }
 
-        public UIElement Draw(int thickness)
+        public UIElement Draw(SolidColorBrush brush, int thickness)
         {
             Line l = new Line()
             {
@@ -31,7 +32,7 @@ namespace Contract
                 X2 = X,
                 Y2 = Y,
                 StrokeThickness = thickness,
-                Stroke = new SolidColorBrush(Colors.Red),
+                Stroke = brush
             };
             return l;
         }

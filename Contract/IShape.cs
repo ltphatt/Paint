@@ -1,5 +1,6 @@
 using System;
 using System.Windows;
+using System.Windows.Media;
 
 namespace Contract
 {
@@ -9,7 +10,7 @@ namespace Contract
         string Icon { get; }
         void HandleStart(double x, double y);
         void HandleEnd(double x, double y);
-        UIElement Draw(int thickness);
+        UIElement Draw(SolidColorBrush brush, int thickness);
         IShape Clone();
     }
 }
