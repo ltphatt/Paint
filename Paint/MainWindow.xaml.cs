@@ -12,12 +12,12 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Reflection;
+using System.Text.Json.Serialization;
+using System.Runtime.Serialization.Json;
+using Newtonsoft.Json;
 
 namespace Paint
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : RibbonWindow
     {
         private bool _isDrawing = false;
@@ -31,6 +31,10 @@ namespace Paint
         private static SolidColorBrush currentColor = new SolidColorBrush(Colors.Black);
 
         private List<IShape> allShape = new List<IShape>();
+
+        private string imagePath = "";
+
+        private bool isSaved = false;
 
         public MainWindow()
         {
@@ -121,7 +125,7 @@ namespace Paint
 
             iconListView.ItemsSource = allShape;
 
-            if(this.allShape.Count == 0)
+            if(allShape.Count == 0)
             {
                 return;
             }
@@ -132,9 +136,6 @@ namespace Paint
 
         private void iconListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //_selectedShapeName = (sender as System.Windows.Controls.Button).Tag as string;
-            //_preview = _prototypes[_selectedShapeName];
-
             if(allShape.Count == 0)
             {
                 return;
@@ -158,8 +159,83 @@ namespace Paint
 
         private void saveBtn_Click(object sender, RoutedEventArgs e)
         {
+            var settings = new JsonSerializerSettings()
+            {
+                TypeNameHandling = TypeNameHandling.Objects
+            };
 
+            var serializedShapeList = JsonConvert.SerializeObject(_shapes, settings);
+
+            // experience 
+            StringBuilder builder = new StringBuilder();
+            builder.Append(serializedShapeList).Append("\n").Append($"{imagePath}");
+            string content = builder.ToString();
+
+
+            var dialog = new System.Windows.Forms.SaveFileDialog();
+
+            dialog.Filter = "JSON (*.json)|*.json";
+
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string path = dialog.FileName;
+                File.WriteAllText(path, content);
+                isSaved = true;
+            }
         }
+
+        private void SaveCanvas(Canvas canvas, string fileName, string extension = "png")
+        {
+            var render = new RenderTargetBitmap((int)canvas.Width, (int)canvas.Height, 96d, 96d, PixelFormats.Pbgra32);
+
+            canvas.Measure(new Size((int)canvas.Width, (int)canvas.Height));
+            canvas.Arrange(new Rect(new Size((int)canvas.Width, (int)canvas.Height)));
+
+            render.Render(canvas);
+
+            switch (extension)
+            {
+                case "png":
+                    var pngEncoder = new PngBitmapEncoder();
+                    pngEncoder.Frames.Add(BitmapFrame.Create(render));
+
+                    using (FileStream file = File.Create(fileName))
+                    {
+                        pngEncoder.Save(file);
+                    }
+                    break;
+                case "jpeg":
+                    var jpegEncoder = new JpegBitmapEncoder();
+                    jpegEncoder.Frames.Add(BitmapFrame.Create(render));
+
+                    using (FileStream file = File.Create(fileName))
+                    {
+                        jpegEncoder.Save(file);
+                    }
+                    break;
+                case "tiff":
+                    var tiffEncoder = new TiffBitmapEncoder();
+                    tiffEncoder.Frames.Add(BitmapFrame.Create(render));
+
+                    using (FileStream file = File.Create(fileName))
+                    {
+                        tiffEncoder.Save(file);
+                    }
+                    break;
+                case "bmp":
+                    var bitmapEncoder = new BmpBitmapEncoder();
+                    bitmapEncoder.Frames.Add(BitmapFrame.Create(render));
+
+                    using (FileStream file = File.Create(fileName))
+                    {
+                        bitmapEncoder.Save(file);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
 
         private void saveAsBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -171,7 +247,20 @@ namespace Paint
 
         }
 
+        private void exportButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new System.Windows.Forms.SaveFileDialog();
+            dialog.Filter = "PNG (*.png)|*.png| JPEG (*.jpeg)|*.jpeg| BMP (*.bmp)|*.bmp | TIFF (*.tiff)|*.tiff";
 
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string path = dialog.FileName;
+                string extension = path.Substring(path.LastIndexOf('\\') + 1).Split('.')[1];
+
+                SaveCanvas(canvas, path, extension);
+            }
+            isSaved = true;
+        }
 
         private void sizeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -288,8 +377,6 @@ namespace Paint
 
         }
 
-
-
         private void deleteBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -309,8 +396,5 @@ namespace Paint
         {
 
         }
-
-
-
     }
 }

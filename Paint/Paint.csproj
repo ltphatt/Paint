@@ -18,14 +18,17 @@
     <None Remove="Images\delete.png" />
     <None Remove="Images\draw_mode.png" />
     <None Remove="Images\ellipse.png" />
+    <None Remove="Images\export.png" />
     <None Remove="Images\import.png" />
     <None Remove="Images\line.png" />
     <None Remove="Images\open-folder.png" />
     <None Remove="Images\paste.png" />
+    <None Remove="Images\picture.png" />
     <None Remove="Images\rectangle.png" />
     <None Remove="Images\redo.png" />
     <None Remove="Images\save-file.png" />
     <None Remove="Images\square.png" />
+    <None Remove="Images\text.png" />
     <None Remove="Images\undo.png" />
     <None Remove="Images\width.png" />
   </ItemGroup>
@@ -35,7 +38,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.1" />
     <PackageReference Include="Fluent.Ribbon" Version="10.0.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,14 +58,17 @@
     <Resource Include="Images\delete.png" />
     <Resource Include="Images\draw_mode.png" />
     <Resource Include="Images\ellipse.png" />
+    <Resource Include="Images\export.png" />
     <Resource Include="Images\import.png" />
     <Resource Include="Images\line.png" />
     <Resource Include="Images\open-folder.png" />
     <Resource Include="Images\paste.png" />
+    <Resource Include="Images\picture.png" />
     <Resource Include="Images\rectangle.png" />
     <Resource Include="Images\redo.png" />
     <Resource Include="Images\save-file.png" />
     <Resource Include="Images\square.png" />
+    <Resource Include="Images\text.png" />
     <Resource Include="Images\undo.png" />
     <Resource Include="Images\width.png" />
   </ItemGroup>

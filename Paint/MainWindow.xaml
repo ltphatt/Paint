@@ -15,23 +15,29 @@
                 <Fluent:ApplicationMenu Header="File">
                     <Fluent:MenuItem Header="New" Name="newButton" Click="newButton_Click"
                                      Icon="/Images/add-folder.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    
                     <Fluent:MenuItem Header="Open" Name="openButton" Click="openButton_Click"
                                      Icon="/Images/open-folder.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    
                     <Fluent:MenuItem Header="Save" Name="saveBtn" Click="saveBtn_Click"
                                      Icon="/Images/save-file.png" RenderOptions.BitmapScalingMode="HighQuality"/>
 
                     <Fluent:MenuItem Header="Import" Name="importButton" Click="importButton_Click"
                                      Icon="/Images/import.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+
+                    <Fluent:MenuItem Header="Export" Name="exportButton" Click="exportButton_Click"
+                                     Icon="/Images/export.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+
                 </Fluent:ApplicationMenu>
             </Fluent:Ribbon.Menu>
 
             <Fluent:RibbonTabItem Header="Home">
                 <Fluent:RibbonGroupBox Header="Tools" >
-                    <Fluent:Button x:Name="modeBtn" Header="Draw Mode" Margin="4,0,4,0">
+                    <!--<Fluent:Button x:Name="modeBtn" Header="Draw Mode" Margin="4,0,4,0">
                         <Fluent:Button.LargeIcon>
                             <Image Source="/Images/draw_mode.png" RenderOptions.BitmapScalingMode="HighQuality"/>
                         </Fluent:Button.LargeIcon>
-                    </Fluent:Button>
+                    </Fluent:Button>-->
                     
                     <Fluent:Button Name="undoBtn" Header="Undo" Margin="4,0,4,0">
                         <Fluent:Button.LargeIcon>
@@ -317,6 +323,25 @@
                 </Fluent:RibbonGroupBox>
 
             </Fluent:RibbonTabItem>
+
+            <Fluent:RibbonTabItem Header="Insert" >
+                <Fluent:RibbonGroupBox Header="Picture">
+                    <Fluent:Button Name="addPictureBtn" Header="Picture" Margin="4,0,4,0">
+                        <Fluent:Button.LargeIcon>
+                            <Image Source="/Images/picture.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </Fluent:Button.LargeIcon>
+                    </Fluent:Button>
+                </Fluent:RibbonGroupBox>
+
+                <Fluent:RibbonGroupBox Header="Text">
+                    <Fluent:Button Name="addTextBtn" Header="Text" Margin="4,0,4,0">
+                        <Fluent:Button.LargeIcon>
+                            <Image Source="/Images/text.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </Fluent:Button.LargeIcon>
+                    </Fluent:Button>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+            
 
         </Fluent:Ribbon>
 
