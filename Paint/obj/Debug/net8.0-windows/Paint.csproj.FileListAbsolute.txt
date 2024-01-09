@@ -27,3 +27,4 @@ D:\4. LẬP TRÌNH WINDOWS\PAINT\Paint\Paint\obj\Debug\net8.0-windows\refint\Pai
 D:\4. LẬP TRÌNH WINDOWS\PAINT\Paint\Paint\obj\Debug\net8.0-windows\Paint.pdb
 D:\4. LẬP TRÌNH WINDOWS\PAINT\Paint\Paint\obj\Debug\net8.0-windows\Paint.genruntimeconfig.cache
 D:\4. LẬP TRÌNH WINDOWS\PAINT\Paint\Paint\obj\Debug\net8.0-windows\ref\Paint.dll
+D:\4. LẬP TRÌNH WINDOWS\PAINT\Paint\Paint\obj\Debug\net8.0-windows\Paint.sourcelink.json

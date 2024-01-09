@@ -14,14 +14,14 @@
             <Fluent:Ribbon.Menu>
                 <Fluent:ApplicationMenu Header="File">
                     <Fluent:MenuItem Header="New" Name="newButton" Click="newButton_Click"
-                                     RenderOptions.BitmapScalingMode="HighQuality"/>
+                                     Icon="/Images/add-folder.png" RenderOptions.BitmapScalingMode="HighQuality"/>
                     <Fluent:MenuItem Header="Open" Name="openButton" Click="openButton_Click"
-                                     RenderOptions.BitmapScalingMode="HighQuality"/>
+                                     Icon="/Images/open-folder.png" RenderOptions.BitmapScalingMode="HighQuality"/>
                     <Fluent:MenuItem Header="Save" Name="saveBtn" Click="saveBtn_Click"
-                                     RenderOptions.BitmapScalingMode="HighQuality"/>
+                                     Icon="/Images/save-file.png" RenderOptions.BitmapScalingMode="HighQuality"/>
 
-                    <Fluent:MenuItem Header="Import to canvas" Name="importButton" Click="importButton_Click"
-                                     RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <Fluent:MenuItem Header="Import" Name="importButton" Click="importButton_Click"
+                                     Icon="/Images/import.png" RenderOptions.BitmapScalingMode="HighQuality"/>
                 </Fluent:ApplicationMenu>
             </Fluent:Ribbon.Menu>
 
@@ -37,6 +37,25 @@
                             <Image Source="/Images/redo.png" RenderOptions.BitmapScalingMode="HighQuality"/>
                         </Fluent:Button.LargeIcon>
                     </Fluent:Button>
+
+                    <Fluent:Button x:Name="deleteBtn" Header="Delete" Margin="4,0,4,0" Click="deleteBtn_Click">
+                        <Fluent:Button.LargeIcon>
+                            <Image Source="/Images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </Fluent:Button.LargeIcon>
+                    </Fluent:Button>
+
+                    <Fluent:Button x:Name="copyBtn" Header="Copy" Margin="4,0,4,0" Click="copyBtn_Click">
+                        <Fluent:Button.LargeIcon>
+                            <Image Source="/Images/copy.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </Fluent:Button.LargeIcon>
+                    </Fluent:Button>
+
+                    <Fluent:Button x:Name="pasteBtn" Header="Paste" Margin="4,0,4,0" Click="pasteBtn_Click">
+                        <Fluent:Button.LargeIcon>
+                            <Image Source="/Images/paste.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </Fluent:Button.LargeIcon>
+                    </Fluent:Button>
+
                 </Fluent:RibbonGroupBox>
 
                 <Fluent:RibbonGroupBox Header="Brushes">
@@ -44,8 +63,7 @@
                         <Image Source="Images/brushes.png" RenderOptions.BitmapScalingMode="HighQuality" 
                            Width="35" Margin="5"/>
 
-
-                        <Fluent:ComboBox x:Name="brushesComboBox" Height="20" IsEditable="False" HorizontalAlignment="Center"
+                        <Fluent:ComboBox x:Name="brushesComboBox" Height="15" Width="50" IsEditable="False"
                                          SelectionChanged="brushesComboBox_SelectionChanged">
                             <ComboBoxItem IsSelected="True">
                                 <TextBlock Text="-------" FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -82,11 +100,11 @@
 
                 <Fluent:RibbonGroupBox Header="Size">
                     <StackPanel Orientation="Vertical" Margin="4,4,4,0" HorizontalAlignment="Center">
-                        <Image Source="Images/line_weight.png" RenderOptions.BitmapScalingMode="HighQuality" 
-                           Width="40" Margin="2"/>
+                        <Image Source="Images/width.png" RenderOptions.BitmapScalingMode="HighQuality" 
+                           Width="35" Margin="2"/>
 
                         <Fluent:ComboBox x:Name="sizeComboBox" Height="15" IsEditable="False" HorizontalAlignment="Center"
-                                         SelectionChanged="sizeComboBox_SelectionChanged" Margin="0,8,0,0">
+                                         SelectionChanged="sizeComboBox_SelectionChanged" Margin="0,0,0,0">
                             <ComboBoxItem IsSelected="True" Content="1 pixel"/>
                             <ComboBoxItem Content="3 pixel"/>
                             <ComboBoxItem Content="5 pixel"/>
@@ -98,7 +116,16 @@
                 <!--Colors selection-->
                 <Fluent:RibbonGroupBox Header="Colors" Width="300">
                     <StackPanel Orientation="Horizontal">
-                        <Grid Width="200" Margin="20,0,5,0">
+
+                        <Fluent:Button Header="Current Color" x:Name="currentColorBtn" Click="currentColorBtn_Click">
+                            <Fluent:Button.Icon>
+                                <Border x:Name="iconBorder" Background="Black" Width="30" Height="30"
+                                        BorderBrush="Black" BorderThickness="1">
+                                </Border>
+                            </Fluent:Button.Icon>
+                        </Fluent:Button>
+
+                        <Grid Width="200" Margin="0,0,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="1*"/>

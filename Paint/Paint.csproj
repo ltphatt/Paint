@@ -10,15 +10,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\add-folder.png" />
     <None Remove="Images\brushes.png" />
     <None Remove="Images\circle.png" />
     <None Remove="Images\color_wheel.png" />
+    <None Remove="Images\copy.png" />
+    <None Remove="Images\delete.png" />
+    <None Remove="Images\draw_mode.png" />
     <None Remove="Images\ellipse.png" />
-    <None Remove="Images\line_weight.png" />
+    <None Remove="Images\import.png" />
+    <None Remove="Images\open-folder.png" />
+    <None Remove="Images\paste.png" />
     <None Remove="Images\rectangle.png" />
     <None Remove="Images\redo.png" />
+    <None Remove="Images\save-file.png" />
     <None Remove="Images\square.png" />
     <None Remove="Images\undo.png" />
+    <None Remove="Images\width.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,19 +42,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\add-folder.png" />
     <Resource Include="Images\brushes.png" />
     <Resource Include="Images\circle.png" />
     <Resource Include="Images\color_wheel.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\copy.png" />
+    <Resource Include="Images\delete.png" />
+    <Resource Include="Images\draw_mode.png" />
     <Resource Include="Images\ellipse.png" />
-    <Resource Include="Images\line_weight.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Images\import.png" />
+    <Resource Include="Images\open-folder.png" />
+    <Resource Include="Images\paste.png" />
     <Resource Include="Images\rectangle.png" />
     <Resource Include="Images\redo.png" />
+    <Resource Include="Images\save-file.png" />
     <Resource Include="Images\square.png" />
     <Resource Include="Images\undo.png" />
+    <Resource Include="Images\width.png" />
   </ItemGroup>
 
 </Project>

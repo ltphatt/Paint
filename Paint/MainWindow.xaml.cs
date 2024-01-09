@@ -28,6 +28,7 @@ namespace Paint
 
 
         private int currentThickness = 1;
+        private SolidColorBrush currentColor = new SolidColorBrush(Colors.Black);
 
         public MainWindow()
         {
@@ -185,72 +186,93 @@ namespace Paint
                     break;
                 default:
                     break;
-
             }
         }
 
         private void editColorBtn_Click(object sender, RoutedEventArgs e)
         {
+            System.Windows.Forms.ColorDialog colorPicker = new System.Windows.Forms.ColorDialog();
 
+            if (colorPicker.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                currentColor = new SolidColorBrush(Color.FromRgb(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B));
+                iconBorder.Background = currentColor;
+            }
         }
 
         private void blackBasicBtn_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void blackBasicBtn_Click_1(object sender, RoutedEventArgs e)
-        {
-
+            currentColor = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            iconBorder.Background = currentColor;
         }
 
         private void grayBasicBtn_Click(object sender, RoutedEventArgs e)
         {
+            currentColor = new SolidColorBrush(Color.FromRgb(127, 127, 127));
+            iconBorder.Background = currentColor;
 
         }
 
         private void darkRedBtn_Click(object sender, RoutedEventArgs e)
         {
+            currentColor = new SolidColorBrush(Color.FromRgb(136, 0, 21));
+            iconBorder.Background = currentColor;
 
         }
 
         private void greenBtn_Click(object sender, RoutedEventArgs e)
         {
+            currentColor = new SolidColorBrush(Color.FromRgb(34, 177, 76));
+            iconBorder.Background = currentColor;
 
         }
 
         private void whiteBtn_Click(object sender, RoutedEventArgs e)
         {
+            currentColor = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            iconBorder.Background = currentColor;
 
         }
 
         private void blueBtn_Click(object sender, RoutedEventArgs e)
         {
+            currentColor = new SolidColorBrush(Color.FromRgb(0, 162, 232));
+            iconBorder.Background = currentColor;
 
         }
 
         private void darkBlueBtn_Click(object sender, RoutedEventArgs e)
         {
+            currentColor = new SolidColorBrush(Color.FromRgb(63, 72, 204));
+            iconBorder.Background = currentColor;
 
         }
 
         private void purpleBtn_Click(object sender, RoutedEventArgs e)
         {
+            currentColor = new SolidColorBrush(Color.FromRgb(163, 73, 164));
+            iconBorder.Background = currentColor;
 
         }
 
         private void lavenderBtn_Click(object sender, RoutedEventArgs e)
         {
+            currentColor = new SolidColorBrush(Color.FromRgb(200, 191, 231));
+            iconBorder.Background = currentColor;
 
         }
 
         private void redBtn_Click(object sender, RoutedEventArgs e)
         {
+            currentColor = new SolidColorBrush(Color.FromRgb(237, 28, 36));
+            iconBorder.Background = currentColor;
 
         }
 
         private void orangeBtn_Click(object sender, RoutedEventArgs e)
         {
+            currentColor = new SolidColorBrush(Color.FromRgb(255, 127, 39));
+            iconBorder.Background = currentColor;
 
         }
 
@@ -259,6 +281,34 @@ namespace Paint
 
         }
 
+        private void currentColorBtn_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
+
+        private void deleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void copyBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void pasteBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void currentColorBtn_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void exportButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
