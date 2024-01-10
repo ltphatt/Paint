@@ -72,16 +72,17 @@
 
                 <Fluent:RibbonGroupBox Header="Brushes">
                     <StackPanel Orientation="Vertical" Margin="4,0,4,0" HorizontalAlignment="Center">
-                        <Image Source="Images/brush.png" RenderOptions.BitmapScalingMode="HighQuality" 
+                        <Image Source="/Images/brush.png" RenderOptions.BitmapScalingMode="HighQuality" 
                            Width="35" Margin="5"/>
 
-                        <Fluent:ComboBox x:Name="brushesComboBox" Height="15" Width="50" IsEditable="False"
+
+                        <Fluent:ComboBox x:Name="brushesComboBox" Height="20" Width="80" IsEditable="False" HorizontalAlignment="Center"
                                          SelectionChanged="brushesComboBox_SelectionChanged">
                             <ComboBoxItem IsSelected="True">
-                                <TextBlock Text="-------" FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="_________" FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </ComboBoxItem>
                             <ComboBoxItem>
-                                <TextBlock Text="- - - -" FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="- - - - -" FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </ComboBoxItem>
                             <ComboBoxItem>
                                 <TextBlock Text="-.-.-.-" FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>

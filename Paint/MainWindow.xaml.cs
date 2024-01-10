@@ -154,33 +154,29 @@ namespace Paint
 
         private void openButton_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void saveBtn_Click(object sender, RoutedEventArgs e)
-        {
-            var settings = new JsonSerializerSettings()
-            {
-                TypeNameHandling = TypeNameHandling.Objects
-            };
-
-            var serializedShapeList = JsonConvert.SerializeObject(_shapes, settings);
-
-            // experience 
-            StringBuilder builder = new StringBuilder();
-            builder.Append(serializedShapeList).Append("\n").Append($"{imagePath}");
-            string content = builder.ToString();
-
-
-            var dialog = new System.Windows.Forms.SaveFileDialog();
-
+            var dialog = new System.Windows.Forms.OpenFileDialog();
             dialog.Filter = "JSON (*.json)|*.json";
 
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                string filePath = dialog.FileName;
+                ReadFile(filePath);
+                ReDraw();
+            }
+        }
+
+        private void saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new System.Windows.Forms.SaveFileDialog();
+            dialog.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
+            dialog.FilterIndex = 1;
+
+            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
                 string path = dialog.FileName;
-                File.WriteAllText(path, content);
-                isSaved = true;
+                WriteFile(path);
             }
         }
 
@@ -368,13 +364,51 @@ namespace Paint
             iconBorder.Background = currentColor;   
         }
 
+        // Read and write file .json
+        private void WriteFile(string filePath)
+        {
+            string json = JsonConvert.SerializeObject(_shapes, new JsonSerializerSettings()
+            {
+                TypeNameHandling = TypeNameHandling.Auto,
+            });
+
+            File.WriteAllText(filePath, json);
+        }
+
+        private void ReadFile(string filePath)
+        {
+            string json = File.ReadAllText(filePath);
+            if (json == null) return;
+
+            var settings = new JsonSerializerSettings()
+            {
+                TypeNameHandling = TypeNameHandling.Objects
+            };
+            _shapes = JsonConvert.DeserializeObject<List<IShape>>(json, settings)!;
+        }
+
         private void currentColorBtn_Click(object sender, RoutedEventArgs e)
         {
         }
 
         private void brushesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            int index = brushesComboBox.SelectedIndex;
+            switch (index)
+            {
+                case 0:
+                    currentDash = null;
+                    break;
+                case 1:
+                    currentDash = new DoubleCollection() { 1 };
+                    break;
+                case 2:
+                    currentDash = new DoubleCollection() { 2 };
+                    break;
+                case 3:
+                    currentDash = new DoubleCollection() { 3 };
+                    break;
+            }
         }
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e)
