@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "/II3uvn+QbuBuW3eOdWVWXbrYaPrMt0AYsR+HM1PQYdWgR6ArzChI1FZXE5U4HCOU0248zGzFkdGs+0IYMCQaw==",
+  "dgSpecHash": "OZdtTsv7WjkTArZpdJHk75ru57nbdFuX9PiStxgdCV0kOGxr9Rt8d3IqOv52/QuUdFl1lOKhJTq6uDXOucVt3g==",
   "success": true,
   "projectFilePath": "D:\\4. LẬP TRÌNH WINDOWS\\PAINT\\Paint\\Line2D\\Line2D.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Le Thanh Phat\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

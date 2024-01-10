@@ -15,12 +15,16 @@ namespace Rectangle2D
 
         public string Icon => "/Images/rectangle.png";
 
+        public SolidColorBrush ColorBrush { get; set; } = new SolidColorBrush(Colors.Black);
+        public int Thickness { get; set; } = 1;
+        public DoubleCollection Dash { get; set; } = new DoubleCollection() { 1 };
+
         public IShape Clone()
         {
             return new Rectangle2D();
         }
 
-        public UIElement Draw(SolidColorBrush brush, int thickness)
+        public UIElement Draw()
         {
             var left = Math.Min(_rightBottom.X, _leftTop.X);
             var top = Math.Min(_rightBottom.Y, _leftTop.Y);
@@ -35,8 +39,9 @@ namespace Rectangle2D
             {
                 Width = width,
                 Height = height,
-                Stroke = brush,
-                StrokeThickness = thickness,
+                Stroke = ColorBrush,
+                StrokeThickness = Thickness,
+                StrokeDashArray = Dash,
             };
 
             Canvas.SetLeft(rect, left);

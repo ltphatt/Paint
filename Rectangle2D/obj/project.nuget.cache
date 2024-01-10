@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "hbLkvp3wtF3Pyp06rkAtHd9N9Nc/guf/oy3rv9eRJB4u5AQWlKGa3ELj77c5/VM4ISvX2qmwlTwdDBl9qmEsFw==",
+  "dgSpecHash": "+xqPa+ZQQphFBbS6JKPcuLv0NawzzAO3G/m+pYkgrhip4AWwXK345McRhR4n+EfOMRSszf9o2H8eUjrMD9q+RA==",
   "success": true,
   "projectFilePath": "D:\\4. LẬP TRÌNH WINDOWS\\PAINT\\Paint\\Rectangle2D\\Rectangle2D.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Le Thanh Phat\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

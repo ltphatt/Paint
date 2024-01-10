@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "7IPgIsHyms5bx0LIDcf1InoKaAsHw7w41oAFs+c0vL+83G52wT261+SaFqi0BqRXV3geUfHlKx9gXMV8vPmq0A==",
+  "dgSpecHash": "0Egc1i/9mRBdEkwgRBTUAWWXEKF7Xj0kMMXmRTYFPqOIdjbjBiKXu6OjA5eL+YmFiKvlRFBORAyrYHAjcTb/xg==",
   "success": true,
   "projectFilePath": "D:\\4. LẬP TRÌNH WINDOWS\\PAINT\\Paint\\Contract\\Contract.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Le Thanh Phat\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

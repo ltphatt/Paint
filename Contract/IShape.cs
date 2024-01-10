@@ -10,7 +10,14 @@ namespace Contract
         string Icon { get; }
         void HandleStart(double x, double y);
         void HandleEnd(double x, double y);
-        UIElement Draw(SolidColorBrush brush, int thickness);
+        UIElement Draw();
         IShape Clone();
+
+        SolidColorBrush ColorBrush { get; set; }
+
+        int Thickness { get; set; }
+
+        DoubleCollection Dash { get; set; }
+
     }
 }

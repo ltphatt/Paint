@@ -10,3 +10,4 @@ D:\4. LẬP TRÌNH WINDOWS\PAINT\Paint\Contract\obj\Debug\net8.0-windows\refint\
 D:\4. LẬP TRÌNH WINDOWS\PAINT\Paint\Contract\obj\Debug\net8.0-windows\Contract.pdb
 D:\4. LẬP TRÌNH WINDOWS\PAINT\Paint\Contract\obj\Debug\net8.0-windows\ref\Contract.dll
 D:\4. LẬP TRÌNH WINDOWS\PAINT\Paint\Contract\obj\Debug\net8.0-windows\Contract.sourcelink.json
+D:\4. LẬP TRÌNH WINDOWS\PAINT\Paint\Contract\obj\Debug\net8.0-windows\Contract.csproj.AssemblyReference.cache

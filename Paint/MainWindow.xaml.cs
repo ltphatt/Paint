@@ -21,6 +21,9 @@ namespace Paint
     public partial class MainWindow : RibbonWindow
     {
         private bool _isDrawing = false;
+        private bool isSaved = false;
+
+
         List<IShape> _shapes = new List<IShape>();
         IShape _preview;
         Dictionary<string, IShape> _prototypes = new Dictionary<string, IShape>();
@@ -29,12 +32,11 @@ namespace Paint
 
         private static int currentThickness = 1;
         private static SolidColorBrush currentColor = new SolidColorBrush(Colors.Black);
+        private static DoubleCollection currentDash = null;
 
         private List<IShape> allShape = new List<IShape>();
 
         private string imagePath = "";
-
-        private bool isSaved = false;
 
         public MainWindow()
         {
@@ -46,6 +48,10 @@ namespace Paint
             _isDrawing = true;
             Point pos = e.GetPosition(canvas);
             _preview.HandleStart(pos.X, pos.Y);
+            _preview.ColorBrush = currentColor;
+            _preview.Thickness = currentThickness;
+            _preview.Dash = currentDash;
+
         }
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
@@ -56,18 +62,9 @@ namespace Paint
 
                 _preview.HandleEnd(pos.X, pos.Y);
 
-                // Xoa het cac hinh ve cu
-                canvas.Children.Clear();
-
-                // Ve lai cac hinh truoc do
-                foreach(var shape in _shapes)
-                {
-                    UIElement element = shape.Draw(currentColor, currentThickness);
-                    canvas.Children.Add(element);
-                }
-
+                ReDraw();
                 // Ve lai hinh preview
-                canvas.Children.Add(_preview.Draw(currentColor, currentThickness));
+                canvas.Children.Add(_preview.Draw());
             }
         }
 
@@ -84,15 +81,18 @@ namespace Paint
             _preview = _prototypes[_selectedShapeName].Clone();
 
             // Xóa toàn bộ
+            ReDraw();
+        }
+        private void ReDraw()
+        {
             canvas.Children.Clear();
-
-            // Vẽ lại tất cả
-            foreach(var shape in _shapes)
+            foreach (var shape in _shapes)
             {
-                UIElement element = shape.Draw(currentColor, currentThickness);
+                UIElement element = shape.Draw();
                 canvas.Children.Add(element);
             }
         }
+
 
         private void RibbonWindow_Loaded(object sender, RoutedEventArgs e)
         {

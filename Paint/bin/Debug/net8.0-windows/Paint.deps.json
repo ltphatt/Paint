@@ -120,6 +120,9 @@
       },
       "System.Text.Json/5.0.2": {},
       "Contract/1.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
         "runtime": {
           "Contract.dll": {}
         }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows;
+using Newtonsoft.Json;
 
 namespace Contract
 {
-
     public class Point2D : IShape
     {
         public double X { get; set; }
@@ -17,13 +17,16 @@ namespace Contract
 
         public string Name => "Point2D";
         public string Icon { get; }
+        public SolidColorBrush ColorBrush { get; set; }
+        public int Thickness { get; set; }
+        public DoubleCollection Dash { get; set; }
 
         public IShape Clone()
         {
             return new Point2D();
         }
 
-        public UIElement Draw(SolidColorBrush brush, int thickness)
+        public UIElement Draw(int thickness)
         {
             Line l = new Line()
             {
@@ -32,9 +35,14 @@ namespace Contract
                 X2 = X,
                 Y2 = Y,
                 StrokeThickness = thickness,
-                Stroke = brush
+                Stroke = new SolidColorBrush(Colors.Red),
             };
             return l;
+        }
+
+        public UIElement Draw()
+        {
+            throw new NotImplementedException();
         }
 
         public void HandleEnd(double x, double y)
