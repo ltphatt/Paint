@@ -10,8 +10,8 @@ namespace Circle2D
 {
     public class Circle2D : IShape
     {
-        private Point2D _leftTop = new Point2D();
-        private Point2D _rightBottom = new Point2D();
+        public Point2D _leftTop = new Point2D();
+        public Point2D _rightBottom = new Point2D();
         public string Name => "Circle";
 
         public string Icon => "/Images/circle.png";

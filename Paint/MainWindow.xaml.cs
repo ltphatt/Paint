@@ -52,7 +52,6 @@ namespace Paint
             _preview.ColorBrush = _currentColor;
             _preview.Thickness = _currentThickness;
             _preview.Dash = _currentDash;
-
         }
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
