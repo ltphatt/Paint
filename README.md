@@ -36,9 +36,9 @@
 4. Select a single element for editing again
 
 ## Self-evaluation rating (100%)
-- 21120514 - Nguyễn Thành Nhân: 35%
+- 21120514 - Nguyễn Thành Nhân: 33%
 - 21120519 - Lê Thanh Phát: 35%
-- 21120592 - Nguyễn Xuân Vi: 30%
+- 21120592 - Nguyễn Xuân Vi: 32%
 
 ## Demo project
 - Link:
