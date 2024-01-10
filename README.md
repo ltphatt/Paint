@@ -36,12 +36,12 @@
 4. Select a single element for editing again
 
 ## Self-evaluation rating (Maximum is 10pts)
-- 21120514 - Nguyễn Thành Nhân: 9
-- 21120519 - Lê Thanh Phát: 9.5
-- 21120592 - Nguyễn Xuân Vi: 9
+- 21120514 - Nguyễn Thành Nhân: 9pts
+- 21120519 - Lê Thanh Phát: 9.5pts
+- 21120592 - Nguyễn Xuân Vi: 9pts
 
 ## Demo project
-- Link:
+- Link demo
 
 
 
