@@ -115,7 +115,7 @@
                 <Fluent:RibbonGroupBox Header="Insert">
                     <Fluent:Button Name="addPictureBtn" Header="Picture" Margin="4,0,4,0" Click="addPictureBtn_Click">
                         <Fluent:Button.LargeIcon>
-                            <Image Source="/Images/picture.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            <Image Source="/Images/image.png" RenderOptions.BitmapScalingMode="HighQuality"/>
                         </Fluent:Button.LargeIcon>
                     </Fluent:Button>
                     

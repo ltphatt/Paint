@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Circle2D")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+84eeef57eadedb2ab1edda59ac5539e0d857eb4f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7cded88d525c2adc4958495c9578ebf8ecdf1278")]
 [assembly: System.Reflection.AssemblyProductAttribute("Circle2D")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Circle2D")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

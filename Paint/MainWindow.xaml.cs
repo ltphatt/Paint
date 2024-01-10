@@ -453,7 +453,7 @@ namespace Paint
       
         private void currentColorBtn_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Pick current color
+            return;
         }
         #endregion
 
