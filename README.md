@@ -33,7 +33,7 @@
 4. Select a single element for editing again
 
 ## Notice
-- Load .dll files into path: \Paint\bin\Debug\net8.0-windows to add graphic object
+- Load .dll files into Debug of Paint to load shapes object, or load into Release folder
 - .NET version: .NET 8.0
 - Visual Studio Community 2022 verison 17.8.3
 
