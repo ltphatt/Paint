@@ -21,7 +21,7 @@ namespace Paint
     public partial class MainWindow : RibbonWindow
     {
         private bool _isDrawing = false;
-        private bool isSaved = false;
+        private bool _isSaved = false;
 
 
         List<IShape> _shapes = new List<IShape>();
@@ -30,12 +30,11 @@ namespace Paint
         string _selectedShapeName = "";
 
 
-        private static int currentThickness = 1;
-        private static SolidColorBrush currentColor = new SolidColorBrush(Colors.Black);
-        private static DoubleCollection currentDash = null;
+        private static int _currentThickness = 1;
+        private static SolidColorBrush _currentColor = new SolidColorBrush(Colors.Black);
+        private static DoubleCollection _currentDash = null;
 
         private List<IShape> allShape = new List<IShape>();
-
         private string imagePath = "";
 
         public MainWindow()
@@ -48,9 +47,9 @@ namespace Paint
             _isDrawing = true;
             Point pos = e.GetPosition(canvas);
             _preview.HandleStart(pos.X, pos.Y);
-            _preview.ColorBrush = currentColor;
-            _preview.Thickness = currentThickness;
-            _preview.Dash = currentDash;
+            _preview.ColorBrush = _currentColor;
+            _preview.Thickness = _currentThickness;
+            _preview.Dash = _currentDash;
 
         }
 
@@ -255,7 +254,7 @@ namespace Paint
 
                 SaveCanvas(canvas, path, extension);
             }
-            isSaved = true;
+            _isSaved = true;
         }
 
         private void sizeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -265,16 +264,16 @@ namespace Paint
             switch(index)
             {
                 case 0:
-                    currentThickness = 1;
+                    _currentThickness = 1;
                     break;
                 case 1:
-                    currentThickness = 3;
+                    _currentThickness = 3;
                     break;
                 case 2:
-                    currentThickness = 5;
+                    _currentThickness = 5;
                     break;
                 case 3:
-                    currentThickness = 8;
+                    _currentThickness = 8;
                     break;
                 default:
                     break;
@@ -287,81 +286,81 @@ namespace Paint
 
             if (colorPicker.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                currentColor = new SolidColorBrush(Color.FromRgb(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B));
-                iconBorder.Background = currentColor;
+                _currentColor = new SolidColorBrush(Color.FromRgb(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B));
+                iconBorder.Background = _currentColor;
             }
         }
 
         private void blackBasicBtn_Click(object sender, RoutedEventArgs e)
         {
-            currentColor = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-            iconBorder.Background = currentColor;
+            _currentColor = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            iconBorder.Background = _currentColor;
         }
 
         private void grayBasicBtn_Click(object sender, RoutedEventArgs e)
         {
-            currentColor = new SolidColorBrush(Color.FromRgb(127, 127, 127));
-            iconBorder.Background = currentColor;
+            _currentColor = new SolidColorBrush(Color.FromRgb(127, 127, 127));
+            iconBorder.Background = _currentColor;
         }
 
         private void darkRedBtn_Click(object sender, RoutedEventArgs e)
         {
-            currentColor = new SolidColorBrush(Color.FromRgb(136, 0, 21));
-            iconBorder.Background = currentColor;
+            _currentColor = new SolidColorBrush(Color.FromRgb(136, 0, 21));
+            iconBorder.Background = _currentColor;
         }
 
         private void greenBtn_Click(object sender, RoutedEventArgs e)
         {
-            currentColor = new SolidColorBrush(Color.FromRgb(34, 177, 76));
-            iconBorder.Background = currentColor;
+            _currentColor = new SolidColorBrush(Color.FromRgb(34, 177, 76));
+            iconBorder.Background = _currentColor;
         }
 
         private void whiteBtn_Click(object sender, RoutedEventArgs e)
         {
-            currentColor = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-            iconBorder.Background = currentColor;
+            _currentColor = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            iconBorder.Background = _currentColor;
         }
 
         private void blueBtn_Click(object sender, RoutedEventArgs e)
         {
-            currentColor = new SolidColorBrush(Color.FromRgb(0, 162, 232));
-            iconBorder.Background = currentColor;
+            _currentColor = new SolidColorBrush(Color.FromRgb(0, 162, 232));
+            iconBorder.Background = _currentColor;
         }
 
         private void darkBlueBtn_Click(object sender, RoutedEventArgs e)
         {
-            currentColor = new SolidColorBrush(Color.FromRgb(63, 72, 204));
-            iconBorder.Background = currentColor;
+            _currentColor = new SolidColorBrush(Color.FromRgb(63, 72, 204));
+            iconBorder.Background = _currentColor;
         }
 
         private void purpleBtn_Click(object sender, RoutedEventArgs e)
         {
-            currentColor = new SolidColorBrush(Color.FromRgb(163, 73, 164));
-            iconBorder.Background = currentColor;
+            _currentColor = new SolidColorBrush(Color.FromRgb(163, 73, 164));
+            iconBorder.Background = _currentColor;
         }
 
         private void lavenderBtn_Click(object sender, RoutedEventArgs e)
         {
-            currentColor = new SolidColorBrush(Color.FromRgb(200, 191, 231));
-            iconBorder.Background = currentColor;
+            _currentColor = new SolidColorBrush(Color.FromRgb(200, 191, 231));
+            iconBorder.Background = _currentColor;
         }
 
         private void redBtn_Click(object sender, RoutedEventArgs e)
         {
-            currentColor = new SolidColorBrush(Color.FromRgb(237, 28, 36));
-            iconBorder.Background = currentColor;
+            _currentColor = new SolidColorBrush(Color.FromRgb(237, 28, 36));
+            iconBorder.Background = _currentColor;
         }
 
         private void orangeBtn_Click(object sender, RoutedEventArgs e)
         {
-            currentColor = new SolidColorBrush(Color.FromRgb(255, 127, 39));
-            iconBorder.Background = currentColor;
+            _currentColor = new SolidColorBrush(Color.FromRgb(255, 127, 39));
+            iconBorder.Background = _currentColor;
         }
 
         private void yellowBtn_Click(object sender, RoutedEventArgs e)
         {
-            currentColor = new SolidColorBrush(Color.FromRgb(255, 242, 0));
-            iconBorder.Background = currentColor;   
+            _currentColor = new SolidColorBrush(Color.FromRgb(255, 242, 0));
+            iconBorder.Background = _currentColor;   
         }
 
         // Read and write file .json
@@ -397,16 +396,16 @@ namespace Paint
             switch (index)
             {
                 case 0:
-                    currentDash = null;
+                    _currentDash = null;
                     break;
                 case 1:
-                    currentDash = new DoubleCollection() { 1 };
+                    _currentDash = new DoubleCollection() { 1 };
                     break;
                 case 2:
-                    currentDash = new DoubleCollection() { 2 };
+                    _currentDash = new DoubleCollection() { 2 };
                     break;
                 case 3:
-                    currentDash = new DoubleCollection() { 3 };
+                    _currentDash = new DoubleCollection() { 3 };
                     break;
             }
         }
