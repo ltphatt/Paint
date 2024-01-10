@@ -35,10 +35,10 @@
 3. Zooming
 4. Select a single element for editing again
 
-## Self-evaluation rating (100%)
-- 21120514 - Nguyễn Thành Nhân: 33%
-- 21120519 - Lê Thanh Phát: 35%
-- 21120592 - Nguyễn Xuân Vi: 32%
+## Self-evaluation rating (Maximum is 10pts)
+- 21120514 - Nguyễn Thành Nhân: 9
+- 21120519 - Lê Thanh Phát: 9.5
+- 21120592 - Nguyễn Xuân Vi: 9
 
 ## Demo project
 - Link:
