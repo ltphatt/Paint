@@ -37,7 +37,7 @@
 
 ## Notice
 - Load .dll files into path: \Paint\bin\Debug\net8.0-windows to add graphic object
-- We test in .NET 8.0
+- .NET version: .NET 8.0
 - Visual Studio Community 2022 verison 17.8.3
 
 ## Self-evaluation rating (Maximum is 10pts)
