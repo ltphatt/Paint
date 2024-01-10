@@ -22,13 +22,15 @@ namespace Paint
     {
         private bool _isDrawing = false;
         private bool _isSaved = false;
+        private bool _isEditing = false;    
 
 
         List<IShape> _shapes = new List<IShape>();
+        Stack<IShape> _shapesStack = new Stack<IShape>();
+
         IShape _preview;
         Dictionary<string, IShape> _prototypes = new Dictionary<string, IShape>();
         string _selectedShapeName = "";
-
 
         private static int _currentThickness = 1;
         private static SolidColorBrush _currentColor = new SolidColorBrush(Colors.Black);
@@ -92,7 +94,6 @@ namespace Paint
             }
         }
 
-
         private void RibbonWindow_Loaded(object sender, RoutedEventArgs e)
         {
             // Nap cac DLL
@@ -148,7 +149,81 @@ namespace Paint
 
         private void newButton_Click(object sender, RoutedEventArgs e)
         {
+            if(imagePath.Length >0 && _shapes.Count == 0)
+            {
+                imagePath = "";
+                canvas.Background = new SolidColorBrush(Colors.White);
+            }
 
+            if(_shapes.Count == 0)
+            {
+                MessageBox.Show("This canvas was empty!");
+                return;
+            }
+
+            if (_isSaved)
+            {
+                ResetCanvas();
+                return;
+            }
+
+            var choice = MessageBox.Show("There are unsaved changes in your canvas.", "Do you want to save your work?", MessageBoxButton.YesNoCancel);
+
+            if(MessageBoxResult.Yes == choice)
+            {
+                var dialog = new System.Windows.Forms.SaveFileDialog();
+                dialog.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
+                dialog.FilterIndex = 1;
+
+                System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+
+                if (result == System.Windows.Forms.DialogResult.OK)
+                {
+                    string path = dialog.FileName;
+                    WriteFile(path);
+                }
+
+                ResetCanvas();
+                _isSaved = true;
+            }
+            else if(MessageBoxResult.No == choice)
+            {
+                ResetCanvas();
+                return;
+            }
+            else
+            {
+                return;
+            }
+
+        }
+
+        private void ResetCanvas()
+        {
+            if(allShape.Count == 0)
+            {
+                return;
+            }
+
+            _isSaved = false;
+            _isEditing =false;
+            _isDrawing = false;
+
+            _shapes.Clear();
+            _selectedShapeName = allShape[0].Name;
+            _preview = _prototypes[_selectedShapeName];
+
+            _currentThickness = 1;
+            _currentColor = new SolidColorBrush(Colors.Black);
+            _currentDash = null;
+
+            imagePath = "";
+
+            brushesComboBox.SelectedIndex = 0;
+            sizeComboBox.SelectedIndex = 0;
+
+            canvas.Children.Clear();
+            canvas.Background = new SolidColorBrush(Colors.White);
         }
 
         private void openButton_Click(object sender, RoutedEventArgs e)
@@ -231,12 +306,6 @@ namespace Paint
             }
         }
 
-
-        private void saveAsBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void importButton_Click(object sender, RoutedEventArgs e)
         {
 
@@ -279,6 +348,25 @@ namespace Paint
                     break;
             }
         }
+        private void brushesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = brushesComboBox.SelectedIndex;
+            switch (index)
+            {
+                case 0:
+                    _currentDash = null;
+                    break;
+                case 1:
+                    _currentDash = new DoubleCollection() { 1 };
+                    break;
+                case 2:
+                    _currentDash = new DoubleCollection() { 2 };
+                    break;
+                case 3:
+                    _currentDash = new DoubleCollection() { 3 };
+                    break;
+            }
+        }
 
         private void editColorBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -291,6 +379,7 @@ namespace Paint
             }
         }
 
+        #region ColorButton
         private void blackBasicBtn_Click(object sender, RoutedEventArgs e)
         {
             _currentColor = new SolidColorBrush(Color.FromRgb(0, 0, 0));
@@ -362,8 +451,14 @@ namespace Paint
             _currentColor = new SolidColorBrush(Color.FromRgb(255, 242, 0));
             iconBorder.Background = _currentColor;   
         }
+      
+        private void currentColorBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Pick current color
+        }
+        #endregion
 
-        // Read and write file .json
+        #region Read and write file Json
         private void WriteFile(string filePath)
         {
             string json = JsonConvert.SerializeObject(_shapes, new JsonSerializerSettings()
@@ -385,34 +480,48 @@ namespace Paint
             };
             _shapes = JsonConvert.DeserializeObject<List<IShape>>(json, settings)!;
         }
+        #endregion
 
-        private void currentColorBtn_Click(object sender, RoutedEventArgs e)
+        #region Undo and Redo buttons
+        private void undoBtn_Click(object sender, RoutedEventArgs e)
         {
-        }
-
-        private void brushesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int index = brushesComboBox.SelectedIndex;
-            switch (index)
+            if (_shapes.Count == 0)
             {
-                case 0:
-                    _currentDash = null;
-                    break;
-                case 1:
-                    _currentDash = new DoubleCollection() { 1 };
-                    break;
-                case 2:
-                    _currentDash = new DoubleCollection() { 2 };
-                    break;
-                case 3:
-                    _currentDash = new DoubleCollection() { 3 };
-                    break;
+                return;
             }
+            if (_shapes.Count == 0 && _shapesStack.Count == 0)
+            {
+                return;
+            }
+
+            int lastIndex = _shapes.Count - 1;
+            _shapesStack.Push(_shapes[lastIndex]);
+            _shapes.RemoveAt(lastIndex);
+
+            ReDraw();
         }
+
+        private void redoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (_shapesStack.Count == 0)
+            {
+                return;
+            }
+            if (_shapes.Count == 0 && _shapesStack.Count == 0)
+            {
+                return;
+            }
+
+            var lastShape = _shapesStack.Pop();
+            _shapes.Add(lastShape);
+            ReDraw();
+        }
+        #endregion
+
+
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void copyBtn_Click(object sender, RoutedEventArgs e)
@@ -425,9 +534,46 @@ namespace Paint
 
         }
 
-        private void currentColorBtn_Click_1(object sender, RoutedEventArgs e)
+        private void cutBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
+        private void editModeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this._isEditing = !this._isEditing;
+            if(_isEditing)
+            {
+                editModeBtn.Header = "Edit Mode";
+            }
+            else
+            {
+                editModeBtn.Header = "Draw Mode";
+            }
+        }
+
+        private void addPictureBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new System.Windows.Forms.OpenFileDialog();
+            dialog.Filter = "PNG (*.png)|*.png| JPEG (*.jpeg)|*.jpeg| BMP (*.bmp)|*.bmp";
+
+            if(dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string path = dialog.FileName;
+
+                imagePath = path;
+
+                ImageBrush brush = new ImageBrush();
+                brush.ImageSource = new BitmapImage(new Uri(path, UriKind.Absolute));
+                canvas.Background = brush;
+            }
+        }
+
+        private void addTextBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
     }
 }

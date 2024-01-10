@@ -15,6 +15,7 @@
     <None Remove="Images\circle.png" />
     <None Remove="Images\color_wheel.png" />
     <None Remove="Images\copy.png" />
+    <None Remove="Images\cut.png" />
     <None Remove="Images\delete.png" />
     <None Remove="Images\draw_mode.png" />
     <None Remove="Images\ellipse.png" />
@@ -55,6 +56,7 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\copy.png" />
+    <Resource Include="Images\cut.png" />
     <Resource Include="Images\delete.png" />
     <Resource Include="Images\draw_mode.png" />
     <Resource Include="Images\ellipse.png" />
