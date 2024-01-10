@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Square2D")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Circle2D")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+38ba05755916636ddf6dd6e5415f63bf75160d5c")]
-[assembly: System.Reflection.AssemblyProductAttribute("Square2D")]
-[assembly: System.Reflection.AssemblyTitleAttribute("Square2D")]
+[assembly: System.Reflection.AssemblyProductAttribute("Circle2D")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Circle2D")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
