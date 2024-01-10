@@ -36,7 +36,9 @@
 4. Select a single element for editing again
 
 ## Notice
-- Load .dll files into \Paint\bin\Debug\net8.0-windows to add graphic object
+- Load .dll files into path: \Paint\bin\Debug\net8.0-windows to add graphic object
+- We test in .NET 8.0
+- Visual Studio Community 2022 verison 17.8.3
 
 ## Self-evaluation rating (Maximum is 10pts)
 - 21120514 - Nguyễn Thành Nhân: 9pts
@@ -44,7 +46,7 @@
 - 21120592 - Nguyễn Xuân Vi: 9pts
 
 ## Demo project
-- Link demo
+- [Link demo paint](https://youtu.be/yoc7lKTNarA)
 
 
 
