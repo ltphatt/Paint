@@ -4,9 +4,6 @@
 - 21120519 - Lê Thanh Phát
 - 21120592 - Nguyễn Xuân Vi
 
-## Technical details
-- Design pattern: Prototype
-
 ## Core features
 1. Dynamically load all graphic objects that can be drawn from external DLL files
 2. The user can choose which object to draw
@@ -40,13 +37,13 @@
 - .NET version: .NET 8.0
 - Visual Studio Community 2022 verison 17.8.3
 
-## Self-evaluation rating (Maximum is 10pts)
-- 21120514 - Nguyễn Thành Nhân: 9pts
-- 21120519 - Lê Thanh Phát: 9.5pts
-- 21120592 - Nguyễn Xuân Vi: 9pts
+## Self-evaluation rating (Maximum is 10 pts)
+- 21120514 - Nguyễn Thành Nhân: 9 pts
+- 21120519 - Lê Thanh Phát: 9.5 pts
+- 21120592 - Nguyễn Xuân Vi: 9 pts
 
 ## Demo project
-- [Link demo paint](https://youtu.be/yoc7lKTNarA)
+- [Link demo paint](https://youtu.be/hN0bga_jtNA)
 
 
 
